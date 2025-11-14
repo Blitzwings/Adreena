@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADREENA | Happy Sunday</title>
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .page.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .page.hidden {
+      opacity: 0;
+    }
+
+    .nav {
+      position: absolute;
+      top: 25px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      border: 1px solid #fff;
+      padding: 8px 20px;
+      border-radius: 4px;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .nav a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .stretch {
+      animation: stretchAnim 0.35s ease;
+    }
+
+    @keyframes stretchAnim {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25, 1.15); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ======================================
+       DASHBOARD / HOME SECTION
+       ====================================== */
+    .hero {
+      height: 100vh;
+      width: 100%;
+      background:
+        linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
+        url("background.jpg") center center/cover no-repeat;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 80px;
+    }
+
+    .content {
+      max-width: 600px;
+    }
+
+    .content h1 {
+      font-size: 6rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .content p {
+      margin: 15px 0;
+      color: #ccc;
+      font-size: 1.1rem;
+    }
+
+    .buttons a {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: pink;
+      padding: 12px 28px;
+      margin-right: 15px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* ======================================================
+       PROFILE PAGE — SMOOTH SLIDE + OVERLAY + PARALLAX
+       ====================================================== */
+
+    #profile {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      padding: 100px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: justify;
+      z-index: 1;
+    }
+
+    /* BACKGROUND SLIDER (dua gambar untuk looping mulus) */
+    #profile .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 200%;
+      display: flex;
+      animation: bgMove 55s linear infinite;
+      transform: translateZ(0) scale(1.1);
+	  filter: blur(2px);
+    }
+
+    #profile .bg-slide img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* OVERLAY GELAP */
+    #profile::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.65);
+      z-index: 1;
+    }
+
+    /* Animasi halus */
+    @keyframes bgMove {
+      0% { transform: translateX(0) scale(1.1); }
+      100% { transform: translateX(-50%) scale(1.1); }
+    }
+
+    #profile h1, 
+    #profile p {
+      position: relative;
+      z-index: 2;
+    }
+
+    #profile h1 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+
+    #profile p {
+  max-width: 700px;
+  color: #fff;
+  font-size: 0.9rem;        /* lebih kecil */
+  line-height: 1.7;
+  font-weight: 300;         /* lebih kurus / tipis */
+  text-shadow: 0 0 6px rgba(0,0,0,0.6);
+  letter-spacing: 0.3px;    /* sedikit lebih rapi */
+}
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        overflow: auto;
+      }
+
+      .nav {
+        left: 20px;
+        right: 20px;
+      }
+
+      .hero {
+        padding: 0 20px;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .content h1 {
+        font-size: 3.2rem;
+      }
+
+      #profile {
+        padding: 60px 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero,
+      #profile,
+      #dashboard {
+        height: 100dvh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <div class="nav">
+    <h3>2077</h3>
+    <a id="btnToggle">PROFILE</a>
+  </div>
+
+  <!-- HOME / DASHBOARD -->
+  <section id="dashboard" class="page active">
+    <div class="hero">
+      <div class="content">
+        <h1>ADREENA</h1>
+        <p>"Aku tampil, aku senang, energi itu nyata."</p>
+        <p class="release-date">IN CINEMAS OCTOBER 4</p>
+
+        <div class="buttons">
+          <a href="achivment.html">ACHIEVMENT</a>
+          <a href="comingsoon.html">CASTING</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE PAGE -->
+  <section id="profile" class="page">
+
+    <!-- BACKGROUND SLIDER (LOOP MULUS) -->
+    <div class="bg-slide">
+      <img src="profile-bg.jpg">
+      <img src="profile-bg.jpg">
+    </div>
+
+    <h1>AISYAH ADREENA ZAHRANY</h1>
+
+    <p>
+      Hai! Nama saya adreena. Saya suka sekali tampil di depan kamera, baik untuk foto maupun video.
+      Saya suka mencoba ekspresi baru, mengikuti arahan, dan belajar hal-hal seru di dunia akting.
+    </p>
+    <br>
+    <p>
+      Saya anak yang ceria, mudah beradaptasi, dan selalu berusaha memberikan energi positif saat casting atau shooting.
+      Saya juga senang bermain peran, menari, dan ikut aktivitas yang membuat saya lebih percaya diri.
+    </p>
+    <br>
+    <p>
+      Saya berharap bisa ikut berpartisipasi dalam berbagai proyek iklan, film, atau konten lainnya.
+      Terima kasih sudah melihat profil saya, semoga kita bisa bekerja sama!
+    </p>
+
+  </section>
+
+  <!-- JAVASCRIPT PAGE SWITCH -->
+  <script>
+    const dashboard = document.getElementById("dashboard");
+    const profile = document.getElementById("profile");
+    const btnToggle = document.getElementById("btnToggle");
+
+    function switchPage(showPage, newText) {
+      let pages = [dashboard, profile];
+
+      pages.forEach(page => {
+        if (page.classList.contains("active")) {
+          page.classList.add("hidden");
+          setTimeout(() => page.classList.remove("active", "hidden"), 600);
+        }
+      });
+
+      setTimeout(() => {
+        showPage.classList.add("active");
+        btnToggle.classList.add("stretch");
+
+        setTimeout(() => btnToggle.textContent = newText, 130);
+        setTimeout(() => btnToggle.classList.remove("stretch"), 350);
+
+      }, 600);
+    }
+
+    btnToggle.onclick = () => {
+      if (dashboard.classList.contains("active")) {
+        switchPage(profile, "HOME");
+      } else {
+        switchPage(dashboard, "PROFILE");
+      }
+    };
+  </script>
+
+</body>
+</html>
