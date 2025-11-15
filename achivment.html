@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADREENA | Happy Sunday</title>
+  
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      opacity: 0;
+      animation: fadeInBody 1.2s ease forwards;
+      transition: all 0.8s ease;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* NAVIGATION */
+    .nav {
+      position: absolute;
+      top: 25px;
+      left: 80px;
+      right: 80px;
+      display: flex;
+      justify-content:space-between;
+      align-items: center;
+      z-index: 5;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: navFade 1s ease forwards;
+      animation-delay: .4s;
+    }
+
+    @keyframes navFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      border: 1px solid #fff;
+      padding: 8px 20px;
+      border-radius: 4px;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .nav a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      background:
+        linear-gradient(to right, rgba(0,0,0,0.85), rgba(0,0,0,0.3)),
+        url("silat.jpg") center -70px/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 110px;
+      text-align: center;
+      transition: all 0.8s ease;
+    }
+
+    .content h1 {
+      font-size: 5rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: titleFade 1.2s ease forwards;
+      animation-delay: .8s;
+      transition: all 0.8s ease;
+    }
+
+    @keyframes titleFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* DESKRIPSI DI TENGAH BAWAH */
+    .description-box {
+      position: absolute;
+      bottom: 150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 700px;
+      text-align: center;
+      padding: 0 20px;
+
+      opacity: 0;
+      transform: translate(-50%, 20px);
+      animation: descFade 1.2s ease forwards;
+      animation-delay: 1.4s;
+      transition: all 0.8s ease;
+    }
+
+    .description-box p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @keyframes descFade {
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    /* WHITE SECTION */
+    .white-section {
+      width: 100%;
+      height: 100vh;
+      background: #fff;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav {
+        left: 20px;
+        right: 20px;
+      }
+
+      .hero {
+        padding-top: 90px;
+        background-position: center;
+      }
+
+      .content h1 {
+        font-size: 3rem;
+      }
+
+      .description-box p {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* CINEMATIC FADE OUT TRANSITION */
+    .page-exit .hero {
+      transform: translateY(-100px) scale(0.95);
+      opacity: 0;
+    }
+
+    .page-exit .content h1 {
+      transform: translateY(-50px) scale(0.8);
+      opacity: 0;
+    }
+
+    .page-exit .description-box {
+      transform: translate(-50%, 50px) scale(0.8);
+      opacity: 0;
+    }
+
+    .page-exit .nav a {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <div class="nav">
+    <h3>2077</h3>
+    <a id="btnHome" href="index.html">HOME</a>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section id="dashboard">
+    <div class="hero">
+
+      <div class="content">
+        <h1>MARTIAL ART</h1>
+      </div>
+
+      <!-- DESKRIPSI DI TENGAH BAWAH -->
+      <div class="description-box">
+        <p>
+          Di sekolah, saya aktif di ekstrakurikuler Pencak Silat. Di sini saya belajar gerakan, jurus, dan cara bertanding dengan benar. 
+          Selain menyehatkan, latihan silat juga membuat saya lebih disiplin dan berani menghadapi tantangan.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HALAMAN PUTIH DI BAWAH HERO -->
+  <section class="white-section"></section>
+
+  <!-- JAVASCRIPT UNTUK CINEMATIC TRANSISI -->
+  <script>
+    const btnHome = document.getElementById("btnHome");
+    const body = document.body;
+
+    btnHome.addEventListener("click", function(e) {
+      e.preventDefault(); // Mencegah navigasi langsung
+
+      // Tambahkan kelas cinematic fade-out
+      body.classList.add("page-exit");
+
+      // Tunggu animasi selesai sebelum navigasi
+      setTimeout(() => {
+        window.location.href = btnHome.href;
+      }, 800); // durasi animasi sesuai CSS
+    });
+  </script>
+
+</body>
+</html>
